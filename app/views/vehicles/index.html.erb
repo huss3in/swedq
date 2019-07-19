@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+Filter <input id="myInput" type="text" placeholder="filter by customer name...">
+<div id='div_vehicle'>
+<%= render :partial => 'vehicle' %>  
+</div>
+
+<script type="text/javascript">
+  setInterval(
+  function(){
+    $.get('vehicles/list_vehicles?'+'filter='+$("#myInput").val())
+  },5000)
+
+
+  $(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $.get('vehicles/list_vehicles?'+'filter='+value)
+  });
+});
+</script>
+
